@@ -1,5 +1,7 @@
 """Recusively Fragment a molecule"""
 
+from rdkit import Chem
+
 
 CHI_TETRAHEDRAL_CW = Chem.ChiralType.CHI_TETRAHEDRAL_CW
 CHI_TETRAHEDRAL_CCW = Chem.ChiralType.CHI_TETRAHEDRAL_CCW
@@ -64,7 +66,6 @@ def set_bond_parity(mol, atom_id, old_parity, old_other_atom_id, new_other_atom_
 
 def fragment_chiral(mol, atom1, atom2):
     """Cut the bond between atom1 and atom2 and replace with connections to wildcard atoms
-
     Return the fragmented structure as a new molecule.
     """
     rwmol = Chem.RWMol(mol)
