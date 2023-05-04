@@ -94,9 +94,9 @@ def frag_rec(
     smiles,
     pattern="[!#0;!#1]-!@[!#0;!#1]",
     fragments=None,
+    visited=None,
     depth=0,
     max_depth=5,
-    visited=None,
 ):
 
     if depth > max_depth:
@@ -123,6 +123,10 @@ def frag_rec(
             if _frags_smi not in visited:
                 visited.add(_frags_smi)
                 fragments.update(
-                    frag_rec(_frags_smi, fragments, depth + 1, max_depth, visited)
-                )
+                    frag_rec(smiles=_frags_smi, 
+                             pattern="[!#0;!#1]-!@[!#0;!#1]",
+                             fragments=fragments, 
+                             visited=visited, 
+                             depth=depth + 1, 
+                             max_depth=max_depth))
     return list(fragments)
